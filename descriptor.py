@@ -27,10 +27,10 @@ class DesNet(nn.Module):
     def __init__(self):
         super(DesNet, self).__init__()
         self.features = nn.Sequential(
-            nn.Conv2d(1, 32, kernel_size=3, stride=2, padding=1, bias = False),
+            nn.Conv2d(1, 32, kernel_size=4, stride=2, padding=1, bias = False),
             nn.BatchNorm2d(32, affine=False),
             nn.ReLU(),
-            nn.Conv2d(32, 128, kernel_size=3, stride=2, padding=1, bias = False),
+            nn.Conv2d(32, 128, kernel_size=4, stride=2, padding=1, bias = False),
             nn.BatchNorm2d(128, affine=False),
             nn.ReLU(),
             nn.Dropout(0.3),
