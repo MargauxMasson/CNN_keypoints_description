@@ -21,27 +21,27 @@ import PIL
 import torch.nn as nn
 import torch.nn.functional as F
 from Utils import L2Norm, cv2_scale, np_reshape
-class DesNet2(nn.Module):
-    """DesNet2 model definition
+class DesNet_2(nn.Module):
+    """DesNet model definition
     """
     def __init__(self):
-        super(DesNet, self).__init__()
+        super(DesNet_2, self).__init__()
         self.features = nn.Sequential(
-            nn.Conv2d(1, 32, kernel_size=3, stride=2, padding=1, bias = False),
-            nn.BatchNorm2d(32, affine=False),
+            nn.Conv2d(1, 16, kernel_size=3, bias = True),
+            nn.BatchNorm2d(16, affine=True),
             nn.ReLU(),
-            nn.Conv2d(32, 128, kernel_size=3, stride=2, padding=1, bias = False),
-            nn.BatchNorm2d(128, affine=False),
+            nn.Conv2d(16, 32, kernel_size=3, bias = True),
+            nn.BatchNorm2d(32, affine=True),
             nn.ReLU(),
-            nn.Conv2d(1, 32, kernel_size=3, stride=2, padding=1, bias = False),
-            nn.BatchNorm2d(32, affine=False),
+            nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1, bias = True),
+            nn.BatchNorm2d(64, affine=True),
             nn.ReLU(),
-            nn.Conv2d(32, 128, kernel_size=3, stride=2, padding=1, bias = False),
-            nn.BatchNorm2d(128, affine=False),
+            nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1, bias = True),
+            nn.BatchNorm2d(128, affine=True),
             nn.ReLU(),
-            nn.Dropout(0.3),
-            nn.Conv2d(128, 128, kernel_size=8, bias = False),
-            nn.BatchNorm2d(128, affine=False),
+            nn.Dropout(0.1),
+            nn.Conv2d(128, 128, kernel_size=8, bias = True),
+            nn.BatchNorm2d(128, affine=True),
         )
         self.features.apply(weights_init)
         return
